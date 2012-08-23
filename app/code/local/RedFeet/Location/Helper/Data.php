@@ -112,10 +112,10 @@ class RedFeet_Location_Helper_Data extends Mage_Directory_Helper_Data
     public function prepareAddressParameters(&$has_address, &$addresses) {
         $customer = Mage::getSingleton('customer/session')->getCustomer();
         $addresses = array();
-        
+                
         $has_address = true;
         
-        if(is_null($customer)) {
+        if(!is_null($customer) && !$customer->getPrimaryBillingAddress() && !$customer->getPrimaryShippingAddress()) {
             $has_address = false;
         }
         
