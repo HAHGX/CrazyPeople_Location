@@ -4,7 +4,7 @@ class RedFeet_Location_Block_Region extends RedFeet_Location_Block_Abstract
 {
     public function html() {
         $html = '';
-        if(count(Mage::helper('location/region')->getArray()) <= 1) {
+        if(count(Mage::helper('location/region')->getArray()) <= 1 || !is_integer($this->getValue())) {
             $this->addStyle('display', 'none;');
             $html.=$this->_getSelectHtml();
             $html.=$this->_getInputHtml();
@@ -38,7 +38,8 @@ class RedFeet_Location_Block_Region extends RedFeet_Location_Block_Abstract
     }
     
     protected function _getInputHtml() {
-        return "<input type='text' name=\"{$this->getName()}\" id=\"{$this->getId()}_text\" value='".Mage::helper('location/region')->getDefaultName()."' class=\"{$this->getClass()} input-text\" />";
+        $name = str_replace('_id', '', $this->getName());
+        return "<input type='text' name=\"{$name}\" id=\"{$this->getId()}_text\" value='".Mage::helper('location/region')->getDefaultId($this->getType(), $this->getValue())."' class=\"{$this->getClass()} input-text\" />";
     }
     
     public function getClass() {
