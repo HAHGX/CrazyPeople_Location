@@ -61,8 +61,9 @@ function checkRegion(el) {
         if(jQuery('#'+el['region'].attr('id')+'_text').attr('name')) {
             jQuery('#'+el['region'].attr('id')+'_text').show();
         } else {
+            var name = el['region'].attr('name').replace('_id', '');
             el['region'].hide();
-            el['region'].parent().append('<input type="text" id="'+el['region'].attr('id')+'_text" name="'+el['region'].attr('name')+'" class="input-text location_region" value="" />');
+            el['region'].parent().append('<input type="text" id="'+el['region'].attr('id')+'_text" name="'+name+'" class="input-text location_region" value="" />');
         }        
     } else {
         try {
@@ -79,8 +80,9 @@ function checkCity(el) {
         if(jQuery('#'+el['city'].attr('id')+'_text').attr('name')) {
             jQuery('#'+el['city'].attr('id')+'_text').show();
         } else {
+            var name = el['city'].attr('name').replace('_id', '');
             el['city'].hide();
-            el['city'].parent().append('<input type="text" id="'+el['city'].attr('id')+'_text" name="'+el['city'].attr('name')+'" class="input-text location_city" value="" />');
+            el['city'].parent().append('<input type="text" id="'+el['city'].attr('id')+'_text" name="'+name+'" class="input-text location_city" value="" />');
         }        
     } else {
         try {
