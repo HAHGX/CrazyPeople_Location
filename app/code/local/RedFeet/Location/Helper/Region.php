@@ -2,8 +2,8 @@
 
 class RedFeet_Location_Helper_Region extends Mage_Core_Helper_Abstract
 {
-    public function getArray() {
-        $country_id = Mage::helper('location/country')->getDefaultId();
+    public function getArray($type=null, $country_id=null) {
+        $country_id = Mage::helper('location/country')->getDefaultId($type, $country_id);
                 
         $collection = Mage::getModel('directory/region')->getResourceCollection()
                 ->addCountryFilter($country_id)
