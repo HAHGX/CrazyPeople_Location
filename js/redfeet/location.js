@@ -57,17 +57,32 @@ function parseClass(el) {
 }
 
 function checkRegion(el) {
+    if(el['region'].attr('name').indexOf(':id') > 0) {
+        var name = el['region'].attr('name').replace(':id', '');
+    } else if(el['region'].attr('name').indexOf('_id') > 0) {
+        var name = el['region'].attr('name').replace('_id', '');
+    } else {
+        var name = el['region'].attr('name');
+    }
+    
+    if(el['region'].attr('id').indexOf(':id') > 0) {
+        var id = el['region'].attr('id').replace(':id', '');
+    } else if(el['region'].attr('id').indexOf('_id') > 0) {
+        var id = el['region'].attr('id').replace('_id', '');
+    } else {
+        var id = el['region'].attr('id');
+    }
+    
     if(el['region'].find('option').size() <= 1) {
-        if(jQuery('#'+el['region'].attr('id')+'_text').attr('name')) {
-            jQuery('#'+el['region'].attr('id')+'_text').show();
-        } else {
-            var name = el['region'].attr('name').replace('_id', '');
+        if(jQuery('[name="'+name+'"]').attr('name')) {
+            jQuery('[name="'+name+'"]').show();
+        } else {                        
             el['region'].hide();
-            el['region'].parent().append('<input type="text" id="'+el['region'].attr('id')+'_text" name="'+name+'" class="input-text location_region" value="" />');
+            el['region'].parent().append('<input type="text" id="'+id+'" name="'+name+'" class="input-text location_region" value="" />');
         }        
     } else {
         try {
-            jQuery('#'+el['region'].attr('id')+'_text').remove();
+            jQuery('input[name="'+name+'"]').remove();
             el['region'].show();
         } catch(Ex) {
             
@@ -76,17 +91,32 @@ function checkRegion(el) {
 }
 
 function checkCity(el) {
+    if(el['city'].attr('name').indexOf(':id') > 0) {
+        var name = el['city'].attr('name').replace(':id', '');
+    } else if(el['city'].attr('name').indexOf('_id') > 0) {
+        var name = el['city'].attr('name').replace('_id', '');
+    } else {
+        var name = el['city'].attr('name');
+    }
+    
+    if(el['city'].attr('id').indexOf(':id') > 0) {
+        var id = el['city'].attr('id').replace(':id', '');
+    } else if(el['city'].attr('id').indexOf('_id') > 0) {
+        var id = el['city'].attr('id').replace('_id', '');
+    } else {
+        var id = el['city'].attr('id');
+    }
+    
     if(el['city'].find('option').size() <= 1) {
-        if(jQuery('#'+el['city'].attr('id')+'_text').attr('name')) {
-            jQuery('#'+el['city'].attr('id')+'_text').show();
-        } else {
-            var name = el['city'].attr('name').replace('_id', '');
+        if(jQuery('input[name="'+name+'"]').attr('name')) {
+            jQuery('input[name="'+name+'"]').show();
+        } else {                        
             el['city'].hide();
-            el['city'].parent().append('<input type="text" id="'+el['city'].attr('id')+'_text" name="'+name+'" class="input-text location_city" value="" />');
+            el['city'].parent().append('<input type="text" id="'+id+'" name="'+name+'" class="input-text location_city" value="" />');
         }        
     } else {
         try {
-            jQuery('#'+el['city'].attr('id')+'_text').remove();
+            jQuery('input[name="'+name+'"]').remove();
             el['city'].show();
         } catch(Ex) {
             
