@@ -13,20 +13,12 @@ class RedFeet_Location_Helper_Country extends Mage_Core_Helper_Abstract {
         if(!empty($value)) return $value;                
         
         $default_country_id = Mage::getStoreConfig('general/country/default');
-                
-        $customer = Mage::getSingleton('customer/session')->getCustomer();
-        $addresses = array();
         $id = '';
+                
+        Mage::helper('location')->prepareAddressParameters($has_address, $addresses);
         
-        $has_address = true;
-        
-        if(is_null($customer)) {
-            $has_address = false;
-        }
-        
-        if($has_address) {
-            $addresses['billing'] = $customer->getPrimaryBillingAddress();
-            $addresses['shipping'] = $customer->getPrimaryShippingAddress();
+        if(!$has_address) {
+            return '';
         }
                 
         switch($type) {
@@ -39,7 +31,7 @@ class RedFeet_Location_Helper_Country extends Mage_Core_Helper_Abstract {
             default:
                 $id = $default_country_id;
         }
-        
+                
         return $id;
     }        
 }
