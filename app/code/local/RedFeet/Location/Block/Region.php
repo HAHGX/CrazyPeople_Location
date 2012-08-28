@@ -13,7 +13,6 @@ class RedFeet_Location_Block_Region extends RedFeet_Location_Block_Abstract
         } else {
             $html.=$this->_getSelectHtml();
         }
-        
         return $html;
     }
     
@@ -35,7 +34,7 @@ class RedFeet_Location_Block_Region extends RedFeet_Location_Block_Abstract
             $selected = ($region_data['value'] == $region_default_id) ? 'selected="selected"' : '';
             $html.="<option value=\"{$region_data['value']}\" {$selected}>{$region_data['label']}</option>";
         }
-        
+                
         return $html;
     }
     
