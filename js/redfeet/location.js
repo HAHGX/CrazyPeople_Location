@@ -34,11 +34,11 @@
                         for(key in cities[region]) {
                             if(cities[region][key]['code']) {
                                 el['city'].append('<option value="'+cities[region][key]['code']+'">'+cities[region][key]['name']+'</option>');
-                            }                            
+                            }
                         }
                         checkCity(el);
                     break;
-                }                                
+                }
             });
         });
     };
