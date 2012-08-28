@@ -18,15 +18,15 @@ class RedFeet_Location_Helper_Country extends Mage_Core_Helper_Abstract {
         Mage::helper('location')->prepareAddressParameters($has_address, $addresses);
         
         if(!$has_address) {
-            return '';
+            return $default_country_id;
         }
                 
         switch($type) {
             case 'billing':
-                $id = (!is_object($addresses['billing']) && $addresses['billing']->getCountryId() == '') ? $default_country_id : $addresses['billing']->getCountryId();
+                $id = (!is_object($addresses['billing'])) ? $default_country_id : $addresses['billing']->getCountryId();
                 break;                
             case 'shipping':
-                $id = (!is_object($addresses['shipping']) && $addresses['shipping']->getCountryId() == '') ? $default_country_id : $addresses['shipping']->getCountryId();
+                $id = (!is_object($addresses['shipping'])) ? $default_country_id : $addresses['shipping']->getCountryId();
                 break;                
             default:
                 $id = $default_country_id;
