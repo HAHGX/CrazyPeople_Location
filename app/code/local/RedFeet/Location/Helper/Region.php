@@ -2,8 +2,8 @@
 
 class RedFeet_Location_Helper_Region extends Mage_Core_Helper_Abstract
 {
-    public function getArray($type=null, $country_id=null) {
-        $country_id = Mage::helper('location/country')->getDefaultId($type, $country_id);
+    public function getArray($type=null, $country_id_param=null) {            
+        $country_id = Mage::helper('location/country')->getDefaultId($type, $country_id_param);                
                 
         $collection = Mage::getModel('directory/region')->getResourceCollection()
                 ->addCountryFilter($country_id)
@@ -25,7 +25,7 @@ class RedFeet_Location_Helper_Region extends Mage_Core_Helper_Abstract
     }
     
     public function getDefaultId($type=null, $value=null) {
-        if(!is_null($value)) return $value;
+        if(!empty($value)) return $value;
         
         $id = '';
         Mage::helper('location')->prepareAddressParameters($has_address, $addresses);
@@ -47,7 +47,7 @@ class RedFeet_Location_Helper_Region extends Mage_Core_Helper_Abstract
     }
     
     public function getDefaultName($type=null, $value=null) {
-        if(!is_null($value)) return $value;
+        if(!empty($value)) return $value;
         
         $name = '';
         Mage::helper('location')->prepareAddressParameters($has_address, $addresses);
