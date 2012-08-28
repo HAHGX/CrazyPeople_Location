@@ -39,8 +39,15 @@ class RedFeet_Location_Block_Region extends RedFeet_Location_Block_Abstract
     }
     
     protected function _getInputHtml() {
-        $name = str_replace('_id', '', $this->getName());
-        return "<input type='text' name=\"{$name}\" id=\"{$this->getId()}_text\" value='".Mage::helper('location/region')->getDefaultId($this->getType(), $this->getValue())."' class=\"{$this->getClass()} input-text\" />";
+        $name = $this->getName();
+        $name = (strstr($name, '_id')) ? str_replace('_id', '', $name) : $name;
+        $name = (strstr($name, ':id')) ? str_replace(':id', '', $name) : $name;
+        
+        $id = $this->getId();
+        $id = (strstr($id, '_id')) ? str_replace('_id', '', $id) : $id;
+        $id = (strstr($id, ':id')) ? str_replace(':id', '', $id) : $id;
+        
+        return "<input type='text' name=\"{$name}\" id=\"{$id}\" value='".Mage::helper('location/region')->getDefaultId($this->getType(), $this->getValue())."' class=\"{$this->getClass()} input-text\" />";
     }
     
     public function getClass() {
