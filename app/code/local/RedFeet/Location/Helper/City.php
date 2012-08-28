@@ -34,7 +34,7 @@ class RedFeet_Location_Helper_City extends Mage_Core_Helper_Abstract
     }
     
     public function getDefaultName($type=null, $value=null) {
-        if(!is_null($value)) return $value;
+        if(!empty($value)) return $value;
         
         $name = '';
         Mage::helper('location')->prepareAddressParameters($has_address, $addresses);
