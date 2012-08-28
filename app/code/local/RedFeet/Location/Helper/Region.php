@@ -33,16 +33,16 @@ class RedFeet_Location_Helper_Region extends Mage_Core_Helper_Abstract
         if(!$has_address) {
             return '';
         }
-        
+                
         switch($type) {
             case 'billing':
-                $id = (is_null($addresses['billing'])) ? $default_country_id : $addresses['billing']->getRegionId();
+                $id = (!is_object($addresses['billing'])) ? '' : $addresses['billing']->getRegionId();
                 break;                
             case 'shipping':
-                $id = (is_null($addresses['shipping'])) ? $default_country_id : $addresses['shipping']->getRegionId();
+                $id = (!is_object($addresses['shipping'])) ? '' : $addresses['shipping']->getRegionId();
                 break;            
         }
-                
+        
         return $id;
     }
     
@@ -58,10 +58,10 @@ class RedFeet_Location_Helper_Region extends Mage_Core_Helper_Abstract
         
         switch($type) {
             case 'billing':
-                $name = (is_null($addresses['billing'])) ? $default_country_id : $addresses['billing']->getRegion();
+                $name = (!is_object($addresses['billing'])) ? '' : $addresses['billing']->getRegion();
                 break;                
             case 'shipping':
-                $name = (is_null($addresses['shipping'])) ? $default_country_id : $addresses['shipping']->getRegion();
+                $name = (!is_object($addresses['shipping'])) ? '' : $addresses['shipping']->getRegion();
                 break;
         }
         
