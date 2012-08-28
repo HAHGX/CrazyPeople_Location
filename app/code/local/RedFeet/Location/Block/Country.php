@@ -13,7 +13,7 @@ class RedFeet_Location_Block_Country extends RedFeet_Location_Block_Abstract
     
     protected function _getOptions() {
         $html = '';
-        $country_default_id = Mage::helper('location/country')->getDefaultId();
+        $country_default_id = Mage::helper('location/country')->getDefaultId($this->getType(), $this->getValue());
         $array = Mage::helper('location/country')->getArray();
         
         foreach($array as $country_data) {
